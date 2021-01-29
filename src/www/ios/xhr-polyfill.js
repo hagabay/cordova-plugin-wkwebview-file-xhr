@@ -882,7 +882,9 @@
       HandlerFactory._getConfig().then(function (config)
       {
         var interceptRemoteRequests = config["InterceptRemoteRequests"];
-
+        if(context.url.toLowerCase().startsWith("https://firestore.googleapis.com/")){
+          interceptRemoteRequests = "none";
+        }
         if (context.interceptRemoteRequests)           // backdoor to override per instance
           interceptRemoteRequests = context.interceptRemoteRequests;
 
